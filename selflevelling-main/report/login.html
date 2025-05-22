@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign Up / Login | SelfLeveling.com</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #ffd700;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    header {
+      width: 100%;
+      background-color: #111;
+      padding: 15px 20px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+    }
+    .logo {
+      color: #ffd700;
+      font-size: 28px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    main {
+      background-color: #111;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #ffd700;
+      width: 100%;
+      max-width: 400px;
+      margin-top: 40px;
+      box-sizing: border-box;
+    }
+    h1 {
+      margin-top: 0;
+      color: #ffd700;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    label {
+      font-weight: bold;
+    }
+    input[type="text"], input[type="email"], input[type="password"] {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    input[type="submit"] {
+      background-color: #ffd700;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      padding: 12px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+    input[type="submit"]:hover {
+      background-color: #e6c200;
+    }
+    .switch-link {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 14px;
+    }
+    .switch-link a {
+      color: #ffd700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .switch-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="REPORT.HTML" class="logo">SelfLeveling.com</a>
+</header>
+
+<main>
+  <h1 id="form-title">Login</h1>
+
+  <form id="auth-form">
+    <div id="signup-fields" style="display:none;">
+      <label for="name">Name</label>
+      <input type="text" id="name" placeholder="Your full name" />
+    </div>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="Email address" required />
+
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="Password" required />
+
+    <input type="submit" value="Login" />
+  </form>
+
+  <div class="switch-link" id="switch-link">
+    Don't have an account? <a id="switch-to-signup">Sign up here</a>
+  </div>
+</main>
+
+<script>
+  const form = document.getElementById('auth-form');
+  const formTitle = document.getElementById('form-title');
+  const signupFields = document.getElementById('signup-fields');
+  const submitBtn = form.querySelector('input[type="submit"]');
+  const switchLink = document.getElementById('switch-link');
+  const switchToSignup = document.getElementById('switch-to-signup');
+
+  let isLogin = true;
+
+  switchToSignup.addEventListener('click', () => {
+    isLogin = !isLogin;
+    if (isLogin) {
+      formTitle.textContent = 'Login';
+      signupFields.style.display = 'none';
+      submitBtn.value = 'Login';
+      switchLink.innerHTML = `Don't have an account? <a id="switch-to-signup">Sign up here</a>`;
+    } else {
+      formTitle.textContent = 'Sign Up';
+      signupFields.style.display = 'block';
+      submitBtn.value = 'Sign Up';
+      switchLink.innerHTML = `Already have an account? <a id="switch-to-login">Login here</a>`;
+    }
+    addSwitchListener();
+  });
+
+  function addSwitchListener() {
+    const switchToLogin = document.getElementById('switch-to-login');
+    if (switchToLogin) {
+      switchToLogin.addEventListener('click', () => {
+        isLogin = true;
+        formTitle.textContent = 'Login';
+        signupFields.style.display = 'none';
+        submitBtn.value = 'Login';
+        switchLink.innerHTML = `Don't have an account? <a id="switch-to-signup">Sign up here</a>`;
+        addSwitchListener();
+      });
+    }
+  }
+
+  addSwitchListener();
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+
+    if (isLogin) {
+      if (email && password) {
+        window.location.href = 'REPORT.HTML';
+      } else {
+        alert('Please fill in all fields.');
+      }
+    } else {
+      const name = document.getElementById('name').value.trim();
+      if (name && email && password) {
+        alert('Sign up successful! You can now log in.');
+        isLogin = true;
+        formTitle.textContent = 'Login';
+        signupFields.style.display = 'none';
+        submitBtn.value = 'Login';
+        switchLink.innerHTML = `Don't have an account? <a id="switch-to-signup">Sign up here</a>`;
+        addSwitchListener();
+        form.reset();
+      } else {
+        alert('Please fill in all fields.');
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

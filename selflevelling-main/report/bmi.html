@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BMI Calculator | SelfLeveling.com</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0a0a0a;
+      color: #fdfdfd;
+      padding: 20px;
+    }
+
+    header {
+      background-color: #000;
+      padding: 20px;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #ffd700;
+      text-decoration: none;
+    }
+
+    main {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: #111;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.2);
+    }
+
+    h1 {
+      font-size: 32px;
+      color: #ffd700;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #ffd700;
+      color: #000;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #ffea00;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: 500;
+      color: #fff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #000;
+      color: #888;
+      margin-top: 40px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="REPORT.HTML" class="logo">SelfLeveling.com</a>
+  </header>
+
+  <main>
+    <h1>BMI Calculator</h1>
+    <form id="bmiForm">
+      <label for="height">Height (in cm):</label>
+      <input type="number" id="height" placeholder="Enter height in centimeters" required />
+
+      <label for="weight">Weight (in kg):</label>
+      <input type="number" id="weight" placeholder="Enter weight in kilograms" required />
+
+      <button type="submit">Calculate BMI</button>
+    </form>
+
+    <div id="result"></div>
+  </main>
+
+  <footer>
+    &copy; 2025 SelfLeveling.com. All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById("bmiForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const height = parseFloat(document.getElementById("height").value);
+      const weight = parseFloat(document.getElementById("weight").value);
+
+      if (!height || !weight || height <= 0 || weight <= 0) {
+        document.getElementById("result").textContent = "Please enter valid height and weight.";
+        return;
+      }
+
+      const bmi = (weight / ((height / 100) ** 2)).toFixed(1);
+      let category = "";
+
+      if (bmi < 18.5) category = "Underweight";
+      else if (bmi < 24.9) category = "Normal weight";
+      else if (bmi < 29.9) category = "Overweight";
+      else category = "Obese";
+
+      document.getElementById("result").textContent = `Your BMI is ${bmi} (${category}).`;
+    });
+  </script>
+
+</body>
+</html>

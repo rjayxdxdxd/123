@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us | SelfLeveling.com</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Open+Sans&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --yellow: #f1c40f;
+      --black: #111;
+      --dark-gray: #1e1e1e;
+      --light-gray: #ccc;
+      --white: #fff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: linear-gradient(135deg, #111111, #222200);
+      color: var(--white);
+      font-family: 'Open Sans', sans-serif;
+      font-size: 18px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: var(--black);
+      padding: 1rem 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.8);
+      flex-shrink: 0;
+    }
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 2.5rem;
+      color: var(--yellow);
+      letter-spacing: 2px;
+      user-select: none;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 3rem auto 4rem;
+      padding: 2rem 15px; /* very small side padding */
+      background-color: var(--dark-gray);
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+      flex-grow: 1;
+    }
+
+    section {
+      margin-bottom: 2.5rem;
+    }
+
+    h2 {
+      color: var(--yellow);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      color: var(--yellow);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    p {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: var(--light-gray);
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 2rem;
+      color: var(--light-gray);
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    li {
+      margin-bottom: 0.8rem;
+    }
+
+    strong {
+      color: var(--white);
+    }
+
+    #contact {
+      background-color: #222;
+      padding: 2rem 2.5rem;
+      text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.8);
+    }
+
+    #contact h3 {
+      margin-top: 0;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    #contact p {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    #contact a {
+      color: var(--yellow);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.25rem;
+      transition: color 0.3s ease;
+    }
+
+    #contact a:hover,
+    #contact a:focus {
+      text-decoration: underline;
+      color: #fff;
+      outline: none;
+    }
+
+    footer {
+      background-color: var(--black);
+      text-align: center;
+      padding: 1.5rem 0;
+      font-size: 1rem;
+      color: var(--light-gray);
+      letter-spacing: 0.05em;
+      user-select: none;
+      border-top: 1px solid #222;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 700px) {
+      main {
+        margin: 2rem 5px 3rem;
+        padding: 1.5rem 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="REPORT.HTML" style="text-decoration: none;">
+    <div class="logo">SelfLeveling.com</div>
+  </a>
+</header>
+
+
+<main>
+  <section id="about">
+    <h2>About Us</h2>
+    <p><strong>Welcome to SelfLeveling.com</strong> — your dedicated partner in transforming your body and building a healthier, stronger you.</p>
+    <p>We believe everyone has the power to reach their ideal physique. Whether you’re starting fresh or sharpening your edge, we’re here to support your journey every step of the way.</p>
+    <h3>Why “SelfLeveling”?</h3>
+    <p>The name says it all: You’re doing this for you, by you. But you're not alone—we’re here to support you with structure, science, and community.</p>
+    <h3>Join the Movement</h3>
+    <p>If you’re ready to build confidence, crush goals, and live stronger, SelfLeveling.com is your launchpad. Let’s level up—together.</p>
+  </section>
+
+  <section id="workout">
+    <h2>Workout Plans</h2>
+    <p>Our workout programs are built for real people with real lives. You'll find:</p>
+    <ul>
+      <li><strong>Beginner to Advanced Routines</strong> that adapt to your fitness level</li>
+      <li><strong>Fat loss, muscle gain, and strength plans</strong> crafted by certified professionals</li>
+      <li><strong>Weekly progressions</strong> to keep you motivated and challenged</li>
+    </ul>
+  </section>
+
+  <section id="nutrition">
+    <h2>Nutrition & Diet</h2>
+    <p>You can’t out-train a bad diet. That’s why we help you master the kitchen too:</p>
+    <ul>
+      <li>Simple, flexible <strong>meal planning guides</strong></li>
+      <li><strong>Macro breakdowns</strong> tailored to your goals</li>
+      <li><strong>Sustainable habits</strong> that don’t suck the fun out of eating</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h3>Contact Us</h3>
+    <p>Have questions? Need custom help? Want to collaborate?</p>
+    <p>Email us at: <a href="mailto:support@selfleveling.com">support@selfleveling.com</a></p>
+    <p>Follow us on Instagram: <a href="https://instagram.com/selfleveling" target="_blank" rel="noopener">@selfleveling</a></p>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 SelfLeveling.com. All rights reserved.
+</footer>
+
+</body>
+</html>
