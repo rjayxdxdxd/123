@@ -704,24 +704,10 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" id="assessmentBtn">Assessment</a>
-
-                        <script>
-                        document.getElementById('assessmentBtn').addEventListener('click', function(event) {
-                            event.preventDefault();
-
-                            const loggedIn = localStorage.getItem('loggedIn');
-                            if (loggedIn === 'true') {
-                            window.location.href = 'profile.html';
-                            } else {
-                            window.location.href = 'signup.html';
-                            }
-                        });
-                        </script>
+                        <a href="assessment.html">Assessment</a>
                         <ul class="dropdown">
                             <li><a href="profile.html">Profile</a></li>
                             <li><a href="login.html">Login</a></li>
-                            <li><a href="signup.html">Sign Up</a></li>
                     </li>
                     </ul>
                 </ul>
@@ -900,7 +886,7 @@
         if (userLoggedIn === "true") {
         window.location.href = "profile.html";
         } else {
-        window.location.href = "signup.html";
+        window.location.href = "assessment.html";
         }
     }
         const mobileToggle = document.getElementById('mobileToggle');
