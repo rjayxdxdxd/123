@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BMI Calculator | SelfLevelling</title>
+  <title>Medical Guidance | SelfLevelling</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
   <style>
-    /* (same styles as before) */
     :root {
       --primary: #ffc527;
       --primary-dark: #e6b121;
@@ -16,30 +16,36 @@
       --gray: #888888;
       --white: #ffffff;
     }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
+
     body {
       background-color: var(--dark);
       color: var(--white);
       line-height: 1.6;
     }
+
     a {
       text-decoration: none;
       color: inherit;
     }
+
     ul {
       list-style: none;
     }
+
     .container {
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
     }
+
     header {
       background-color: var(--darker);
       position: sticky;
@@ -47,40 +53,49 @@
       z-index: 1000;
       padding: 15px 0;
     }
+
     .header-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
+
     .logo {
       display: flex;
       align-items: center;
     }
+
     .logo h1 {
       color: var(--white);
       font-size: 24px;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
+
     .logo span {
       color: var(--primary);
     }
+
     .arrow-icon {
       color: var(--primary);
       font-size: 24px;
       margin-left: 10px;
     }
+
     nav {
       display: flex;
       align-items: center;
     }
+
     .main-menu {
       display: flex;
     }
+
     .main-menu li {
       position: relative;
       margin: 0 15px;
     }
+
     .main-menu li a {
       font-weight: 500;
       padding: 10px 0;
@@ -90,6 +105,7 @@
       font-size: 14px;
       letter-spacing: 1px;
     }
+
     .main-menu li a:after {
       content: '';
       position: absolute;
@@ -100,9 +116,11 @@
       background-color: var(--primary);
       transition: width 0.3s;
     }
+
     .main-menu li a:hover:after {
       width: 100%;
     }
+
     .dropdown {
       position: absolute;
       top: 100%;
@@ -118,79 +136,100 @@
       border-radius: 5px;
       padding: 10px 0;
     }
+
     .main-menu li:hover .dropdown {
       opacity: 1;
       visibility: visible;
       transform: translateY(0);
     }
+
     .dropdown li a {
       display: block;
       padding: 10px 20px;
       font-size: 13px;
     }
+
     .dropdown li a:hover {
       background-color: rgba(255, 255, 255, 0.05);
     }
+
     .mobile-toggle {
       display: none;
       font-size: 24px;
       cursor: pointer;
       color: var(--white);
     }
-    .bmi-form-container {
-      max-width: 600px;
-      background-color: var(--darker);
+
+    @media (max-width: 768px) {
+      .main-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: var(--darker);
+        padding: 20px 0;
+      }
+
+      .main-menu.active {
+        display: flex;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+    }
+
+    /* Content styles */
+    .content-container {
+      max-width: 700px;
       margin: 40px auto;
+      background-color: var(--darker);
       padding: 30px;
       border-radius: 10px;
-      box-shadow: 0 0 15px rgba(255, 197, 39, 0.5);
+      box-shadow: 0 0 15px rgba(255, 197, 39, 0.7);
+      font-size: 16px;
+      line-height: 1.5;
     }
-    .bmi-form h2 {
+
+    h2 {
       color: var(--primary);
+      margin-bottom: 20px;
       text-align: center;
-      margin-bottom: 25px;
     }
-    .bmi-form label {
+
+    ul {
+      margin-left: 20px;
+      margin-top: 10px;
+    }
+
+    ul li {
+      margin-bottom: 8px;
+    }
+
+    .back-home {
       display: block;
-      margin-top: 15px;
-      font-weight: bold;
-    }
-    .bmi-form input, .bmi-form select {
-      width: 100%;
-      padding: 10px;
-      border-radius: 5px;
-      margin-top: 5px;
-      border: none;
-      font-size: 15px;
-    }
-    .bmi-form button {
-      width: 100%;
-      margin-top: 25px;
-      padding: 12px;
+      width: fit-content;
+      margin: 30px auto 0;
+      padding: 10px 25px;
       background-color: var(--primary);
       color: var(--dark);
       font-weight: bold;
-      border: none;
+      text-align: center;
       border-radius: 5px;
       cursor: pointer;
-      font-size: 16px;
+      text-decoration: none;
       transition: background-color 0.3s;
     }
-    .bmi-form button:hover {
+
+    .back-home:hover {
       background-color: var(--primary-dark);
-    }
-    #bmiResult {
-      display: none;
-      margin-top: 25px;
-      text-align: center;
-      font-size: 18px;
-      color: var(--primary);
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
   <header>
     <div class="container header-container">
       <div class="logo">
@@ -241,96 +280,31 @@
     </div>
   </header>
 
-  <!-- BMI Calculator Form -->
-  <div class="bmi-form-container">
-    <form class="bmi-form" id="bmiForm">
-      <h2>BMI Calculator</h2>
-      <label for="name">Name:</label>
-      <input type="text" id="name" required>
+  <div class="content-container">
+    <h2>Exercise Guidance for Users with Medical Conditions</h2>
+    <p>
+      If you have a medical condition, it's important to approach exercise with caution and prioritize your health.
+      Here are some recommended types of physical activity that are generally safe and beneficial:
+    </p>
+    <ul>
+      <li>Daily gentle walks to improve circulation and mobility.</li>
+      <li>Water aerobics or swimming for low-impact cardio without joint strain.</li>
+      <li>Stretching exercises and light yoga to enhance flexibility and reduce tension.</li>
+      <li>Using a stationary bike at a slow pace to build endurance safely.</li>
+    </ul>
+    <p>
+      Always consult with your healthcare provider before starting any new exercise routine to ensure it's appropriate for your specific condition.
+    </p>
 
-      <label for="age">Age:</label>
-      <input type="number" id="age" required>
-
-      <label for="gender">Gender:</label>
-      <select id="gender" required>
-        <option value="">--Select--</option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
-      </select>
-
-      <label for="height">Height (cm):</label>
-      <input type="number" id="height" required>
-
-      <label for="weight">Weight (kg):</label>
-      <input type="number" id="weight" required>
-
-      <button type="submit">Calculate BMI</button>
-    </form>
-
-    <div id="bmiResult"></div>
+    <a href="REPORT.HTML" class="back-home">Return to Home</a>
   </div>
 
   <script>
-    // On load, populate name, age, gender from localStorage if available
-    window.addEventListener('DOMContentLoaded', () => {
-      const storedUser = localStorage.getItem('userData');
-      if (storedUser) {
-        try {
-          const userData = JSON.parse(storedUser);
-          if (userData.name) document.getElementById('name').value = userData.name;
-          if (userData.age) document.getElementById('age').value = userData.age;
-          if (userData.gender) document.getElementById('gender').value = userData.gender;
-          // Optional: prefill height and weight if stored
-          if (userData.height) document.getElementById('height').value = userData.height;
-          if (userData.weight) document.getElementById('weight').value = userData.weight;
-        } catch(e) {
-          console.error('Error parsing userData from localStorage', e);
-        }
-      }
-    });
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mainMenu = document.getElementById('mainMenu');
 
-    const form = document.getElementById('bmiForm');
-    const result = document.getElementById('bmiResult');
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const name = document.getElementById('name').value.trim();
-      const age = parseInt(document.getElementById('age').value);
-      const gender = document.getElementById('gender').value;
-      const height = parseFloat(document.getElementById('height').value);
-      const weight = parseFloat(document.getElementById('weight').value);
-
-      if (!name || !age || !gender || !height || !weight) {
-        alert('Please fill all fields correctly.');
-        return;
-      }
-
-      const heightM = height / 100;
-      const bmi = (weight / (heightM * heightM)).toFixed(2);
-
-      // Save all data into localStorage userData object
-      const userData = {
-        name,
-        age,
-        gender,
-        height,
-        weight,
-        bmi
-      };
-      localStorage.setItem('userData', JSON.stringify(userData));
-
-      result.style.display = 'block';
-      result.innerHTML = `Hello <strong>${name}</strong>, your BMI is <strong>${bmi}</strong>.<br>Redirecting to your workout plan...`;
-
-      setTimeout(() => {
-        window.location.href = 'workout.html';
-      }, 3000);
-    });
-
-    document.getElementById('mobileToggle').addEventListener('click', () => {
-      document.getElementById('mainMenu').classList.toggle('active');
+    mobileToggle.addEventListener('click', () => {
+      mainMenu.classList.toggle('active');
     });
   </script>
 

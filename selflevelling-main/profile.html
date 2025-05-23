@@ -650,8 +650,8 @@
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-user-circle"></i></div>
-                    <h4>Welcome, JohnDoe!</h4>
-                    <p>Email: johndoe@example.com<br>Member Since: 2024</p>
+                    <h4>Welcome, Rain!</h4>
+                    <p>Email: Rain@gmail.com<br>Member Since: 2024</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-weight"></i></div>
@@ -696,6 +696,36 @@
                     <li><a href="About.HTML">About</a></li>
                     <li><a href="Fitness Tools.html">Tools</a></li>
                     <li><a href="support.html">Support</a></li>
+                </ul>
+                                    <li>    
+                    <a href="support.html">Support</a>
+                        <ul class="dropdown">
+                            <li><a href="faqs.html">FAQs</a></li>
+                            <li><a href="privacyandpolicy.html">Privacy Policy</a></li>
+                            <li><a href="terms.html">Terms & Conditions</a></li>
+                        </ul>
+                    </li>
+                <ul>
+                    <li>
+                        <a href="#" id="assessmentBtn">Assessment</a>
+
+                        <script>
+                        document.getElementById('assessmentBtn').addEventListener('click', function(event) {
+                            event.preventDefault();
+
+                            const loggedIn = localStorage.getItem('loggedIn');
+                            if (loggedIn === 'true') {
+                            window.location.href = 'profile.html';
+                            } else {
+                            window.location.href = 'signup.html';
+                            }
+                        });
+                        </script>
+                        <ul class="dropdown">
+                            <li><a href="profile.html">Profile</a></li>
+                            <li><a href="login.html">Login</a></li>
+                            <li><a href="signup.html">Sign Up</a></li>
+                    </li>
                 </ul>
             </div>
         </div>

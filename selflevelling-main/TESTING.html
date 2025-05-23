@@ -1,293 +1,143 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-  <!-- Header + Base Styles -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Us - Self-levelling</title>
   <style>
-    :root {
-      --primary: #ffc527;
-      --primary-dark: #e6b121;
-      --dark: #111111;
-      --darker: #000000;
-      --light: #f5f5f5;
-      --gray: #888888;
-      --white: #ffffff;
-    }
-
-    * {
+    body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    body {
-      background-color: var(--dark);
-      color: var(--white);
-      line-height: 1.6;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    ul {
-      list-style: none;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
+      background-color: #121212;
+      color: #f0f0f0;
+      width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     header {
-      background-color: var(--darker);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      padding: 15px 0;
-    }
-
-    .header-container {
+      background-color: #1f1f1f;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 15px 30px;
+      border-bottom: 2px solid gold;
     }
 
     .logo {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo h1 {
-      color: var(--white);
-      font-size: 24px;
-      text-transform: uppercase;
+      font-size: 28px;
+      color: gold;
+      font-weight: bold;
       letter-spacing: 1px;
     }
 
-    .logo span {
-      color: var(--primary);
+    nav a {
+      color: gold;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
     }
 
-    .arrow-icon {
-      color: var(--primary);
-      font-size: 24px;
-      margin-left: 10px;
+    nav a:hover {
+      text-decoration: underline;
     }
 
-    nav {
-      display: flex;
-      align-items: center;
+    .hero {
+      background-color: #1a1a1a;
+      padding: 60px 30px;
+      text-align: center;
+      border-bottom: 1px solid #333;
     }
 
-    .main-menu {
-      display: flex;
+    .hero h1 {
+      font-size: 36px;
+      color: gold;
+      margin-bottom: 10px;
     }
 
-    .main-menu li {
-      position: relative;
-      margin: 0 15px;
+    .hero p {
+      font-size: 18px;
+      color: #ccc;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
-    .main-menu li a {
-      font-weight: 500;
-      padding: 10px 0;
-      color: var(--white);
-      position: relative;
-      text-transform: uppercase;
-      font-size: 14px;
-      letter-spacing: 1px;
-    }
-
-    .main-menu li a:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0%;
-      height: 2px;
-      background-color: var(--primary);
-      transition: width 0.3s;
-    }
-
-    .main-menu li a:hover:after {
-      width: 100%;
-    }
-
-    .dropdown {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 200px;
-      background-color: var(--darker);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(10px);
-      transition: all 0.3s;
-      z-index: 100;
-      border-radius: 5px;
-      padding: 10px 0;
-    }
-
-    .main-menu li:hover .dropdown {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    .dropdown li a {
-      display: block;
-      padding: 10px 20px;
-      font-size: 13px;
-    }
-
-    .dropdown li a:hover {
-      background-color: rgba(255, 255, 255, 0.05);
-    }
-
-    .mobile-toggle {
-      display: none;
-      font-size: 24px;
-      cursor: pointer;
-      color: var(--white);
-    }
-
-    /* Login Form Styles */
-    .login-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: calc(100vh - 80px); /* Adjust for header */
-      padding: 50px 20px;
-      background-color: var(--dark);
-    }
-
-    .login-container {
-      background-color: var(--darker);
+    .about-content {
       padding: 40px 30px;
-      border-radius: 10px;
-      width: 320px;
-      box-shadow: 0 0 15px rgba(255, 197, 39, 0.7);
+      background-color: #181818;
     }
 
-    .login-container h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: var(--primary);
-    }
-
-    .login-container form {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .login-container label {
-      margin-bottom: 5px;
-      font-weight: 500;
-    }
-
-    .login-container input[type="text"],
-    .login-container input[type="password"] {
-      padding: 10px;
+    .about-content h2 {
+      color: gold;
+      font-size: 26px;
       margin-bottom: 15px;
-      border: none;
-      border-radius: 5px;
-      background-color: #222;
-      color: var(--white);
     }
 
-    .login-container input[type="submit"] {
-      padding: 10px;
-      background-color: var(--primary);
-      color: var(--dark);
-      font-weight: 600;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
+    .about-content p {
+      font-size: 17px;
+      color: #ccc;
+      line-height: 1.6;
+      margin-bottom: 25px;
     }
 
-    .login-container input[type="submit"]:hover {
-      background-color: var(--primary-dark);
+    .team-img {
+      display: block;
+      margin: 30px auto;
+      width: 600px;
+      height: auto;
+      border: 2px solid gold;
+      border-radius: 8px;
     }
 
-    .login-container p {
+    footer {
+      background-color: #1f1f1f;
+      color: #888;
       text-align: center;
-      margin-top: 10px;
-      color: var(--gray);
-    }
-
-    .login-container a {
-      color: var(--primary);
-      font-weight: 500;
-    }
-
-    @media (max-width: 768px) {
-      .main-menu {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background-color: var(--darker);
-        padding: 20px 0;
-      }
-
-      .main-menu.active {
-        display: flex;
-      }
-
-      .mobile-toggle {
-        display: block;
-      }
+      padding: 20px;
+      font-size: 14px;
+      border-top: 1px solid #333;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="container header-container">
-      <div class="logo">
-        <a href="REPORT.HTML">
-          <h1>Self-<span>Levelling</span></h1>
-        </a>
-        <div class="arrow-icon">
-          <i class="fas fa-chevron-right"></i>
-          <i class="fas fa-chevron-right"></i>
-          <i class="fas fa-chevron-right"></i>
-          <i class="fas fa-chevron-right"></i>
-        </div>
-      </div>
-      <div class="mobile-toggle" id="mobileToggle">
-        <i class="fas fa-bars"></i>
-      </div>
-      <nav>
-        <ul class="main-menu" id="mainMenu">
-          <li><a href="REPORT.HTML">Home</a></li>
-          <li><a href="About.HTML">About</a></li>
-          <li>
-            <a href="Fitness Tools.html">Fitness tools</a>
-            <ul class="dropdown">
-              <li><a href="bmi.html">BMI Calculator</a></li>
-              <li><a href="calorie.html">Calorie Calculator</a></li>
-              <li><a href="workout.html">Workout Plans</a></li>
-              <li><a href="nutrition.html">Nutrition & Diet</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="support.html">Support</a>
-            <ul class="dropdown">
-              <li><a href="faqs.html">FAQs</a></li>
-              <li><a href="privacyandpolicy.html">Privacy Policy</a></li>
-              <li><a href="terms.html">Terms & Conditions</a></li>
-            </ul>
-          </li>
-          <li><a href="assessment.html">Assessment</a></li>
-        </ul>
-      </nav>
-    </div>
+    <div class="logo">Self-levelling</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="assessment.html">Assessment</a>
+      <a href="about.html">About</a>
+      <a href="login.html">Login</a>
+    </nav>
   </header>
+
+  <section class="hero">
+    <h1>About Us</h1>
+    <p>We empower individuals through personalized health, fitness, and self-care guidance tailored to every condition and lifestyle.</p>
+  </section>
+
+  <section class="about-content">
+    <h2>Our Mission</h2>
+    <p>
+      Self-levelling is committed to making fitness and health accessible to everyone. We personalize fitness routines, nutrition plans, and wellness guidance to suit each individual’s needs, goals, and medical conditions.
+    </p>
+
+    <h2>Our Approach</h2>
+    <p>
+      We understand that every journey is unique. That’s why our platform offers assessments, tracks progress, and recommends tailored solutions. If a user has a medical limitation, we offer respectful, safe alternatives rather than exclusions.
+    </p>
+
+    <h2>Meet the Team</h2>
+    <p>
+      A group of passionate developers, trainers, and health experts, we are united by a single goal: to make sustainable, inclusive fitness guidance available to everyone.
+    </p>
+
+    <img src="https://via.placeholder.com/600x300.png?text=Our+Team" alt="Team" class="team-img">
+  </section>
+
+  <footer>
+    &copy; 2025 Self-levelling. All rights reserved.
+  </footer>
+
+</body>
+</html>
