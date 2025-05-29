@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About Us | SelfLeveling.com</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary: #ffc527;
+        --primary-dark: #e6b121;
+        --dark: #111111;
+        --darker: #000000;
+        --light: #f5f5f5;
+        --gray: #888888;
+        --white: #ffffff;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--dark);
+        color: var(--white);
+        line-height: 1.6;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      header {
+        background-color: var(--darker);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 15px 0;
+      }
+
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+      }
+
+      .logo h1 {
+        color: var(--white);
+        font-size: 24px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .logo span {
+        color: var(--primary);
+      }
+
+      .arrow-icon {
+        color: var(--primary);
+        font-size: 24px;
+        margin-left: 10px;
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+      }
+
+      .main-menu {
+        display: flex;
+      }
+
+      .main-menu li {
+        position: relative;
+        margin: 0 15px;
+      }
+
+      .main-menu li a {
+        font-weight: 500;
+        padding: 10px 0;
+        color: var(--white);
+        position: relative;
+        text-transform: uppercase;
+        font-size: 14px;
+        letter-spacing: 1px;
+      }
+
+      .main-menu li a:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0%;
+        height: 2px;
+        background-color: var(--primary);
+        transition: width 0.3s;
+      }
+
+      .main-menu li a:hover:after {
+        width: 100%;
+      }
+
+      .dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 200px;
+        background-color: var(--darker);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.3s;
+        z-index: 100;
+        border-radius: 5px;
+        padding: 10px 0;
+      }
+
+      .main-menu li:hover .dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .dropdown li a {
+        display: block;
+        padding: 10px 20px;
+        font-size: 13px;
+      }
+
+      .dropdown li a:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+      }
+
+      .login-btn {
+        background-color: var(--primary);
+        color: var(--dark);
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 14px;
+        transition: all 0.3s;
+      }
+
+      .login-btn:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-3px);
+      }
+
+      .mobile-toggle {
+        display: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--white);
+      }
+
+      @media (max-width: 992px) {
+        .main-menu {
+          display: none;
+          position: absolute;
+          top: 70px;
+          left: 0;
+          width: 100%;
+          background-color: var(--darker);
+          flex-direction: column;
+          padding: 20px 0;
+        }
+
+        .main-menu.active {
+          display: flex;
+        }
+
+        .dropdown {
+          position: static;
+          width: 100%;
+          opacity: 1;
+          visibility: visible;
+          transform: none;
+          display: none;
+        }
+
+        .dropdown.active {
+          display: block;
+        }
+
+        .mobile-toggle {
+          display: block;
+        }
+      }
+
+      main {
+        padding: 40px 20px;
+      }
+
+      .section {
+        max-width: 900px;
+        margin: 0 auto 40px auto;
+        border-bottom: 1px solid #333;
+        padding-bottom: 20px;
+      }
+
+      h1, h2 {
+        color: var(--primary);
+      }
+
+      ul {
+        padding-left: 20px;
+      }
+
+      li {
+        margin-bottom: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container header-container">
+        <div class="logo">
+          <a href="REPORT.HTML">
+            <h1>Self-<span>Levelling</span></h1>
+          </a>
+          <div class="arrow-icon">
+            <i class="fas fa-chevron-right"></i>
+            <i class="fas fa-chevron-right"></i>
+            <i class="fas fa-chevron-right"></i>
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+        <div class="mobile-toggle" id="mobileToggle">
+          <i class="fas fa-bars"></i>
+        </div>
+        <nav>
+          <ul class="main-menu" id="mainMenu">
+            <li><a href="REPORT.HTML">Profile</a></li>
+            <li><a href="About.HTML">About</a></li>
+            <li>
+              <a href="Fitness Tools.html">Fitness Tools</a>
+              <ul class="dropdown">
+                <li><a href="calorie.html">Calorie Calculator</a></li>
+                <li><a href="workout.html">Workout Plans</a></li>
+                <li><a href="nutrition.html">Nutrition & Diet</a></li>
+              
+              </ul>
+            </li>
+            <li><a href="privacyandpolicy.html">Support</a></li>
+            <li><a href="assessment.html">Assessment</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="section">
+        <h1>About Us</h1>
+        <p><strong>Welcome to SelfLeveling.com</strong> — your dedicated partner in transforming your body and building a healthier, stronger you.</p>
+        <p>We believe everyone has the power to reach their ideal physique. Whether you’re starting fresh or sharpening your edge, we’re here to support your journey every step of the way.</p>
+      </div>
+
+      <div class="section">
+        <h2>Why “SelfLeveling”?</h2>
+        <p>The name says it all: you’re doing this for you, by you. But you're not alone — we’re here to support you with <strong>structure, science, and community</strong>.</p>
+      </div>
+
+      <div class="section">
+        <h2>Join the Movement</h2>
+        <p>Ready to build confidence, crush goals, and live stronger? <strong>SelfLeveling.com</strong> is your launchpad. Let’s level up — together.</p>
+      </div>
+
+      <div class="section">
+        <h2>Workout Plans</h2>
+        <p>Our workout programs are built for real people with real lives. You’ll find:</p>
+        <ul>
+          <li><strong>Beginner to Advanced Routines</strong> that adapt to your fitness level</li>
+          <li><strong>Fat loss, muscle gain, and strength plans</strong> crafted by certified professionals</li>
+          <li><strong>Weekly progressions</strong> to keep you motivated and challenged</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>Nutrition & Diet</h2>
+        <p>You can’t out-train a bad diet. That’s why we help you master the kitchen with:</p>
+        <ul>
+          <li><strong>Simple, flexible meal planning guides</strong></li>
+          <li><strong>Macro breakdowns</strong> tailored to your goals</li>
+          <li><strong>Sustainable habits</strong> that don’t suck the fun out of eating</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>Contact Us</h2>
+        <p>Have questions? Need custom help? Want to collaborate?</p>
+        <p>Email us at: <a href="mailto:support@selfleveling.com">support@selfleveling.com</a></p>
+        <p>Follow us on Instagram: <a href="https://instagram.com/selfleveling" target="_blank">@selfleveling</a></p>
+      </div>
+    </main>
+  </body>
+</html>

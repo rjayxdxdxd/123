@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Self-levelling | Profile</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nutrition and Diet | SelfLeveling.com</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #ffc527;
@@ -51,29 +52,7 @@
             z-index: 1000;
             padding: 15px 0;
         }
-        .logout-btn-fixed {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 12px 24px;
-            background-color: var(--primary);
-            color: var(--dark);
-            border-radius: 30px;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 14px;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: background-color 0.3s, transform 0.3s;
-            z-index: 999;
-        }
-
-        .logout-btn-fixed:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
-
+        
         .header-container {
             display: flex;
             justify-content: space-between;
@@ -176,12 +155,87 @@
         .dropdown li a:hover {
             background-color: rgba(255, 255, 255, 0.05);
         }
+        
+        .account-menu {
+            display: flex;
+            align-items: center;
+        }
+        
+        .login-btn {
+            background-color: var(--primary);
+            color: var(--dark);
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .login-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
         .mobile-toggle {
             display: none;
             font-size: 24px;
             cursor: pointer;
             color: var(--white);
         }
+        
+        .hero {
+            background-color: var(--dark);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .hero-text {
+            flex: 1;
+            padding-right: 50px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            position: relative;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            display: block;
+        }
+        
+        .hero h2 {
+            font-size: 64px;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+        
+        .hero-accent {
+            color: var(--primary);
+            font-style: italic;
+            font-family: 'Segoe Script', cursive;
+            font-weight: normal;
+            text-transform: none;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+            max-width: 500px;
+            color: var(--gray);
+        }
+        
         .cta-btn {
             display: inline-block;
             padding: 15px 35px;
@@ -593,6 +647,20 @@
                 display: none;
             }
         }
+        
+        @media (max-width: 576px) {
+            .logo h1 {
+                font-size: 20px;
+            }
+            
+            .hero h2 {
+                font-size: 32px;
+            }
+            
+            .section-title h3 {
+                font-size: 28px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -632,74 +700,77 @@
                             <li><a href="faqs.html">FAQs</a></li>
                             <li><a href="privacyandpolicy.html">Privacy Policy</a></li>
                         </ul>
-                    <li><a href="assessment.html">Assessment</a></li>
+                    <li>
+                        <a href="#" id="assessmentBtn">Assessment</a>
+
+                        <script>
+                        document.getElementById('assessmentBtn').addEventListener('click', function(event) {
+                            event.preventDefault();
+
+                            const loggedIn = localStorage.getItem('loggedIn');
+                            if (loggedIn === 'true') {
+                            window.location.href = 'profile.html';
+                            } else {
+                            window.location.href = 'signup.html';
+                            }
+                        });
+                        </script>
+                        <ul class="dropdown">
+                            <li><a href="profile.html">Profile</a></li>
+                    </li>
+                    </ul>
                 </ul>
 
             </nav>
         </div>
     </header>
 
-    <section class="features">
-        <div class="container">
-            <div class="section-title">
-                <h3>Your <span>Fitness Profile</span></h3>
-                <p>Track your progress, view stats, and customize your health journey.</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-user-circle"></i></div>
-                    <h4>Welcome, JohnDoe!</h4>
-                    <p>Email: johndoe@example.com<br>Member Since: 2024</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-weight"></i></div>
-                    <h4>BMI Tracker</h4>
-                    <p>Your current BMI: <strong>23.5</strong></p>
-                    <a href="bmi.html" class="feature-link">Update BMI <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-fire"></i></div>
-                    <h4>Calorie Tracker</h4>
-                    <p>Calories today: <strong>1800 kcal</strong></p>
-                    <a href="calorie.html" class="feature-link">Update Calories <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-dumbbell"></i></div>
-                    <h4>Workout Log</h4>
-                    <p>Last Workout: <strong>Upper Body - May 21</strong></p>
-                    <a href="workout.html" class="feature-link">View Plans <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-apple-alt"></i></div>
-                    <h4>Diet Summary</h4>
-                    <p>Today's Nutrition: <strong>Balanced</strong></p>
-                    <a href="nutrition.html" class="feature-link">Customize Diet <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-notes-medical"></i></div>
-                    <h4>Assessment</h4>
-                    <p>Health Status: <strong>Good</strong><br>Recommendation: Keep going!</p>
-                    <a href="assessment.html" class="feature-link">Retake Assessment <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
+<main>
+  <h1>Nutrition and Diet</h1>
 
-    <footer>
-        <div class="container footer-container">
-            <div class="footer-column">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="REPORT.HTML">Home</a></li>
-                    <li><a href="About.HTML">About</a></li>
-                    <li><a href="Fitness Tools.html">Tools</a></li>
-                    <li><a href="support.html">Support</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2025 Self-Levelling. All rights reserved.</p>
-        </div>
-    </footer>
+  <section>
+    <h2>Balanced Nutrition</h2>
+    <p>Good nutrition is the foundation of health and fitness. Focus on a balanced intake of macronutrients:</p>
+    <ul>
+      <li><strong>Proteins:</strong> Support muscle repair and growth. Include lean meats, fish, legumes, and dairy.</li>
+      <li><strong>Carbohydrates:</strong> Your body's main energy source. Choose whole grains, fruits, and vegetables.</li>
+      <li><strong>Fats:</strong> Essential for hormone function and energy. Opt for healthy fats from nuts, seeds, and oils.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Popular Diet Plans</h2>
+    <ul>
+      <li><strong>Calorie Deficit:</strong> Consume fewer calories than you burn to lose fat effectively.</li>
+      <li><strong>High Protein:</strong> Supports muscle growth and keeps you full longer.</li>
+      <li><strong>Keto:</strong> Low carb, high fat diet that encourages fat burning.</li>
+      <li><strong>Intermittent Fasting:</strong> Eating windows to improve metabolism and control hunger.</li>
+      <li><strong>Mediterranean Diet:</strong> Emphasizes whole foods, healthy fats, and moderate protein.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Tips for Success</h2>
+    <ul>
+      <li>Plan your meals ahead to avoid unhealthy choices.</li>
+      <li>Stay hydrated by drinking plenty of water daily.</li>
+      <li>Track your macros or calories to stay on target.</li>
+      <li>Incorporate plenty of fiber-rich foods for digestion.</li>
+      <li>Don't skip meals, especially breakfast.</li>
+      <li>Allow yourself occasional treats to avoid burnout.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Need Help?</h2>
+    <p>Consult a registered dietitian or nutritionist for personalized guidance. For more resources, visit <a href="https://www.eatright.org" target="_blank" rel="noopener noreferrer">EatRight.org</a>.</p>
+  </section>
+
+</main>
+
+<footer>
+  &copy; 2025 SelfLeveling.com. All rights reserved.
+</footer>
+
 </body>
 </html>

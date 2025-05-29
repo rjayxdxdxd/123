@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Self-levelling | Profile</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Workout Plans by Calorie & BMI | SelfLeveling.com</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #ffc527;
@@ -51,29 +52,7 @@
             z-index: 1000;
             padding: 15px 0;
         }
-        .logout-btn-fixed {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 12px 24px;
-            background-color: var(--primary);
-            color: var(--dark);
-            border-radius: 30px;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 14px;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: background-color 0.3s, transform 0.3s;
-            z-index: 999;
-        }
-
-        .logout-btn-fixed:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
-
+        
         .header-container {
             display: flex;
             justify-content: space-between;
@@ -176,12 +155,87 @@
         .dropdown li a:hover {
             background-color: rgba(255, 255, 255, 0.05);
         }
+        
+        .account-menu {
+            display: flex;
+            align-items: center;
+        }
+        
+        .login-btn {
+            background-color: var(--primary);
+            color: var(--dark);
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .login-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
         .mobile-toggle {
             display: none;
             font-size: 24px;
             cursor: pointer;
             color: var(--white);
         }
+        
+        .hero {
+            background-color: var(--dark);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .hero-text {
+            flex: 1;
+            padding-right: 50px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            position: relative;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            display: block;
+        }
+        
+        .hero h2 {
+            font-size: 64px;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+        
+        .hero-accent {
+            color: var(--primary);
+            font-style: italic;
+            font-family: 'Segoe Script', cursive;
+            font-weight: normal;
+            text-transform: none;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+            max-width: 500px;
+            color: var(--gray);
+        }
+        
         .cta-btn {
             display: inline-block;
             padding: 15px 35px;
@@ -593,6 +647,20 @@
                 display: none;
             }
         }
+        
+        @media (max-width: 576px) {
+            .logo h1 {
+                font-size: 20px;
+            }
+            
+            .hero h2 {
+                font-size: 32px;
+            }
+            
+            .section-title h3 {
+                font-size: 28px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -632,74 +700,113 @@
                             <li><a href="faqs.html">FAQs</a></li>
                             <li><a href="privacyandpolicy.html">Privacy Policy</a></li>
                         </ul>
-                    <li><a href="assessment.html">Assessment</a></li>
+                    <li>
+                        <a href="#" id="assessmentBtn">Assessment</a>
+
+                        <script>
+                        document.getElementById('assessmentBtn').addEventListener('click', function(event) {
+                            event.preventDefault();
+
+                            const loggedIn = localStorage.getItem('loggedIn');
+                            if (loggedIn === 'true') {
+                            window.location.href = 'profile.html';
+                            } else {
+                            window.location.href = 'signup.html';
+                            }
+                        });
+                        </script>
+                        <ul class="dropdown">
+                            <li><a href="profile.html">Profile</a></li>
+                    </li>
+                    </ul>
                 </ul>
 
             </nav>
         </div>
     </header>
 
-    <section class="features">
-        <div class="container">
-            <div class="section-title">
-                <h3>Your <span>Fitness Profile</span></h3>
-                <p>Track your progress, view stats, and customize your health journey.</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-user-circle"></i></div>
-                    <h4>Welcome, JohnDoe!</h4>
-                    <p>Email: johndoe@example.com<br>Member Since: 2024</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-weight"></i></div>
-                    <h4>BMI Tracker</h4>
-                    <p>Your current BMI: <strong>23.5</strong></p>
-                    <a href="bmi.html" class="feature-link">Update BMI <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-fire"></i></div>
-                    <h4>Calorie Tracker</h4>
-                    <p>Calories today: <strong>1800 kcal</strong></p>
-                    <a href="calorie.html" class="feature-link">Update Calories <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-dumbbell"></i></div>
-                    <h4>Workout Log</h4>
-                    <p>Last Workout: <strong>Upper Body - May 21</strong></p>
-                    <a href="workout.html" class="feature-link">View Plans <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-apple-alt"></i></div>
-                    <h4>Diet Summary</h4>
-                    <p>Today's Nutrition: <strong>Balanced</strong></p>
-                    <a href="nutrition.html" class="feature-link">Customize Diet <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-notes-medical"></i></div>
-                    <h4>Assessment</h4>
-                    <p>Health Status: <strong>Good</strong><br>Recommendation: Keep going!</p>
-                    <a href="assessment.html" class="feature-link">Retake Assessment <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
+<main>
+  <h1>Workout Plans Based on Calorie Intake & BMI</h1>
+  
+  <h2>By Calorie Intake</h2>
 
-    <footer>
-        <div class="container footer-container">
-            <div class="footer-column">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="REPORT.HTML">Home</a></li>
-                    <li><a href="About.HTML">About</a></li>
-                    <li><a href="Fitness Tools.html">Tools</a></li>
-                    <li><a href="support.html">Support</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2025 Self-Levelling. All rights reserved.</p>
-        </div>
-    </footer>
+  <section>
+    <h3>Low Calorie Intake (Under 1800 kcal/day)</h3>
+    <p>Focus on maintaining muscle mass while promoting fat loss.</p>
+    <ul>
+      <li>Strength Training 3x/week (compound lifts, moderate weights)</li>
+      <li>Low-impact cardio 2-3x/week (walking, cycling)</li>
+      <li>Rest days with light stretching or yoga</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Moderate Calorie Intake (1800-2500 kcal/day)</h3>
+    <p>Balance muscle growth and fat loss with moderate intensity workouts.</p>
+    <ul>
+      <li>Full-body strength training 4x/week</li>
+      <li>HIIT cardio 1-2x/week</li>
+      <li>Core and flexibility workouts on rest days</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>High Calorie Intake (2500+ kcal/day)</h3>
+    <p>Focus on muscle gain and strength with heavier lifting.</p>
+    <ul>
+      <li>Split routine strength training 5x/week (push/pull/legs)</li>
+      <li>Moderate cardio 1x/week to maintain conditioning</li>
+      <li>Active recovery days with mobility work</li>
+    </ul>
+  </section>
+
+  <h2>By BMI Category</h2>
+
+  <section>
+    <h3>Underweight (BMI &lt; 18.5)</h3>
+    <p>Focus on strength training to build lean muscle mass.</p>
+    <ul>
+      <li>3-4 days of full-body weight training per week</li>
+      <li>Limit cardio to 1-2 light sessions weekly</li>
+      <li>High protein diet to support muscle growth</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Normal Weight (BMI 18.5 - 24.9)</h3>
+    <p>Maintain fitness and body composition with balanced workouts.</p>
+    <ul>
+      <li>3-5 days of mixed strength and cardio training</li>
+      <li>Include flexibility and core strengthening exercises</li>
+      <li>Adjust intensity based on personal goals</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Overweight (BMI 25 - 29.9)</h3>
+    <p>Prioritize fat loss and increase cardiovascular health.</p>
+    <ul>
+      <li>4-5 days of moderate-intensity strength and cardio workouts</li>
+      <li>Incorporate HIIT for fat burning</li>
+      <li>Include mobility and balance training</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Obese (BMI 30+)</h3>
+    <p>Start slow and build up endurance and strength safely.</p>
+    <ul>
+      <li>Low-impact cardio (walking, swimming) daily</li>
+      <li>Strength training 2-3 times a week focusing on major muscle groups</li>
+      <li>Flexibility and balance exercises to improve mobility</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  &copy; 2025 SelfLeveling.com. All rights reserved.
+</footer>
+
 </body>
 </html>

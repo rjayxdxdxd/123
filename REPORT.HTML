@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self Levelling - Your Fitness Journey Starts Here</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ffc527;
+            --primary-dark: #e6b121;
+            --dark: #111111;
+            --darker: #000000;
+            --light: #f5f5f5;
+            --gray: #888888;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--white);
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Auth Page Styles */
+        .auth-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
+        }
+        
+        .auth-container {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+            animation: slideUp 0.6s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .auth-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .auth-logo h1 {
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        
+        .auth-logo span {
+            color: var(--primary);
+        }
+        
+        .auth-logo p {
+            color: var(--gray);
+            font-size: 16px;
+        }
+        
+        .auth-toggle {
+            display: flex;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .auth-toggle button {
+            flex: 1;
+            padding: 15px;
+            background: transparent;
+            border: none;
+            color: var(--gray);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .auth-toggle button.active {
+            background: var(--primary);
+            color: var(--dark);
+        }
+        
+        .auth-form {
+            display: none;
+        }
+        
+        .auth-form.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--white);
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--white);
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 3px rgba(255, 197, 39, 0.1);
+        }
+        
+        .form-group input::placeholder {
+            color: var(--gray);
+        }
+        
+        .auth-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary);
+            color: var(--dark);
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+        
+        .auth-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 197, 39, 0.3);
+        }
+        
+        .forgot-password {
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .forgot-password a {
+            color: var(--primary);
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .forgot-password a:hover {
+            color: var(--primary-dark);
+        }
+        
+        .auth-decoration {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+        
+        .decoration-1 {
+            top: 10%;
+            left: 10%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .decoration-2 {
+            bottom: 10%;
+            right: 10%;
+            animation: float 6s ease-in-out infinite reverse;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Main Site Styles (Hidden Initially) */
+        .main-site {
+            display: none;
+        }
+        
+        header {
+            background-color: var(--darker);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            color: var(--white);
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .arrow-icon {
+            color: var(--primary);
+            font-size: 24px;
+            margin-left: 10px;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .welcome-text {
+            color: var(--primary);
+            font-weight: 500;
+        }
+        
+        .logout-btn {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .logout-btn:hover {
+            background: var(--primary);
+            color: var(--dark);
+        }
+        
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        .main-menu {
+            display: flex;
+        }
+        
+        .main-menu li {
+            position: relative;
+            margin: 0 15px;
+        }
+        
+        .main-menu li a {
+            font-weight: 500;
+            padding: 10px 0;
+            color: var(--white);
+            position: relative;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+        
+        .main-menu li a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .main-menu li a:hover:after {
+            width: 100%;
+        }
+        
+        .mobile-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--white);
+        }
+        
+        .hero {
+            background-color: var(--dark);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .hero-text {
+            flex: 1;
+            padding-right: 50px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            position: relative;
+        }
+        
+        .hero h2 {
+            font-size: 64px;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+        
+        .hero-accent {
+            color: var(--primary);
+            font-style: italic;
+            font-family: 'Segoe Script', cursive;
+            font-weight: normal;
+            text-transform: none;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+            max-width: 500px;
+            color: var(--gray);
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background-color: var(--primary);
+            color: var(--dark);
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        
+        .cta-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        .journey-text {
+            position: absolute;
+            top: 100px;
+            right: 100px;
+            transform: rotate(-5deg);
+        }
+        
+        .journey-text p {
+            color: var(--primary);
+            font-family: 'Segoe Script', cursive;
+            font-size: 32px;
+            line-height: 1.2;
+        }
+        
+        .curved-arrow {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 3px solid var(--primary);
+            border-top: none;
+            border-left: none;
+            border-radius: 0 0 20px 0;
+            transform: rotate(45deg);
+            right: 30px;
+            bottom: 30px;
+        }
+        
+        .contact-bar {
+            background-color: var(--primary);
+            padding: 20px 0;
+            color: var(--dark);
+        }
+        
+        .contact-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-item i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .contact-item span {
+            font-weight: 500;
+        }
+        
+        .features {
+            padding: 80px 0;
+            background-color: var(--darker);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h3 {
+            font-size: 36px;
+            color: var(--white);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .section-title span {
+            color: var(--primary);
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            padding: 30px;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .feature-icon {
+            color: var(--primary);
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h4 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .auth-container {
+                margin: 20px;
+                padding: 30px 25px;
+            }
+            
+            .auth-logo h1 {
+                font-size: 24px;
+            }
+            
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 50px;
+                text-align: center;
+            }
+            
+            .hero h2 {
+                font-size: 42px;
+            }
+            
+            .journey-text {
+                display: none;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h2 {
+                font-size: 32px;
+            }
+            
+            .section-title h3 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Authentication Page -->
+    <div class="auth-page" id="authPage">
+        <div class="auth-decoration decoration-1"></div>
+        <div class="auth-decoration decoration-2"></div>
+        
+        <div class="auth-container">
+            <div class="auth-logo">
+                <h1>Self-<span>Levelling</span></h1>
+                <p>Your Fitness Journey Starts Here</p>
+            </div>
+            
+            <div class="auth-toggle">
+                <button class="toggle-login active" onclick="toggleForm('login')">Login</button>
+                <button class="toggle-signup" onclick="toggleForm('signup')">Sign Up</button>
+            </div>
+            
+            <!-- Login Form -->
+            <form class="auth-form active" id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="auth-btn">Login</button>
+                <div class="forgot-password">
+                    <a href="#" onclick="showForgotPassword()">Forgot Password?</a>
+                </div>
+            </form>
+            
+            <!-- Signup Form -->
+            <form class="auth-form" id="signupForm">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" placeholder="Create a password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="auth-btn">Create Account</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Main Site (Hidden Initially) -->
+    <div class="main-site" id="mainSite">
+        <header>
+            <div class="container header-container">
+                <div class="logo">
+                    <h1>Self-<span>Levelling</span></h1>
+                    <div class="arrow-icon">
+                        <i class="fas fa-chevron-right"></i>
+                        <i class="fas fa-chevron-right"></i>
+                        <i class="fas fa-chevron-right"></i>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+                
+                <div class="user-info">
+                    <span class="welcome-text">Welcome, <span id="userName">User</span>!</span>
+                    <button class="logout-btn" onclick="logout()">Logout</button>
+                </div>
+                
+                <div class="mobile-toggle" id="mobileToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                
+                <nav>
+                    <ul class="main-menu">
+                        <li><a href="profile.html">Profile</a></li>
+                        <li><a href="About.HTML">About</a></li>
+                        <li><a href="Fitness Tools.html">Fitness Tools</a></li>
+                        <li><a href="privacyandpolicy.html">Support</a></li>
+                        <li><a href="assessment.html">Assessment</a></li>
+                        
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h2>ACHIEVE<br>YOUR FITNESS<br>GOALS <span class="hero-accent">with Us</span></h2>
+                        <p>Discover how Self Levelling can help you reach your fitness potential</p>
+
+                    </div>
+                    <div class="hero-image">
+                        <div style="width: 400px; height: 400px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 48px; color: var(--dark);">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="journey-text">
+                <p>Fuel your<br>Fitness<br>Journey</p>
+            </div>
+            
+            <div class="curved-arrow"></div>
+        </section>
+
+        <section class="contact-bar">
+            <div class="container">
+                <div class="contact-container">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@selflevelling.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>24/7 Support Available</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <div class="section-title">
+                    <h3>Why Choose <span>Self-Levelling</span>?</h3>
+                    <p>Access customized workout plans tailored to your fitness level, goals, and available equipment.</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <h4>Custom Workouts</h4>
+                        <p>Get personalized workout plans tailored to your fitness level and goals.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h4>Nutrition Plans</h4>
+                        <p>Get meal plans, recipes, and nutritional advice to complement your fitness journey.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Progress Tracking</h4>
+                        <p>Monitor your progress with detailed analytics and achievement tracking.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // User data storage and session management
+        let users = [];
+        let currentUser = null;
+
+        // Initialize data from localStorage
+        function initializeApp() {
+            // Load saved users
+            const savedUsers = localStorage.getItem('selfLevellingUsers');
+            if (savedUsers) {
+                try {
+                    users = JSON.parse(savedUsers);
+                    console.log('Loaded users:', users.length);
+                } catch (e) {
+                    console.error('Error loading users:', e);
+                    users = [];
+                }
+            }
+
+            // Check for saved session
+            const savedSession = localStorage.getItem('selfLevellingSession');
+            if (savedSession) {
+                try {
+                    const sessionData = JSON.parse(savedSession);
+                    const user = users.find(u => u.id === sessionData.userId);
+                    if (user && sessionData.timestamp > Date.now() - (7 * 24 * 60 * 60 * 1000)) { // 7 days
+                        currentUser = user;
+                        showMainSite();
+                        return;
+                    } else {
+                        // Clear expired session
+                        localStorage.removeItem('selfLevellingSession');
+                    }
+                } catch (e) {
+                    console.error('Error loading session:', e);
+                    localStorage.removeItem('selfLevellingSession');
+                }
+            }
+
+            // Show auth page if no valid session
+            showAuthPage();
+        }
+
+        // Save users to localStorage
+        function saveUsers() {
+            try {
+                localStorage.setItem('selfLevellingUsers', JSON.stringify(users));
+                console.log('Users saved successfully');
+            } catch (e) {
+                console.error('Error saving users:', e);
+                alert('Error saving user data. Please try again.');
+            }
+        }
+
+        // Save current session
+        function saveSession() {
+            if (currentUser) {
+                const sessionData = {
+                    userId: currentUser.id,
+                    timestamp: Date.now()
+                };
+                try {
+                    localStorage.setItem('selfLevellingSession', JSON.stringify(sessionData));
+                    console.log('Session saved for user:', currentUser.name);
+                } catch (e) {
+                    console.error('Error saving session:', e);
+                }
+            }
+        }
+
+        // Clear session
+        function clearSession() {
+            localStorage.removeItem('selfLevellingSession');
+            console.log('Session cleared');
+        }
+
+        // Toggle between login and signup forms
+        function toggleForm(formType) {
+            const loginBtn = document.querySelector('.toggle-login');
+            const signupBtn = document.querySelector('.toggle-signup');
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+
+            if (formType === 'login') {
+                loginBtn.classList.add('active');
+                signupBtn.classList.remove('active');
+                loginForm.classList.add('active');
+                signupForm.classList.remove('active');
+            } else {
+                signupBtn.classList.add('active');
+                loginBtn.classList.remove('active');
+                signupForm.classList.add('active');
+                loginForm.classList.remove('active');
+            }
+        }
+
+        // Handle login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+            const password = document.getElementById('loginPassword').value;
+            
+            // Validate inputs
+            if (!email || !password) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            // Find user
+            const user = users.find(u => u.email.toLowerCase() === email && u.password === password);
+            
+            if (user) {
+                currentUser = user;
+                currentUser.lastLogin = new Date().toISOString();
+                saveUsers(); // Update last login
+                saveSession();
+                showMainSite();
+                
+                // Clear form
+                document.getElementById('loginForm').reset();
+                
+                // Show success message
+                setTimeout(() => {
+                    alert(`Welcome back, ${currentUser.name}!`);
+                }, 100);
+            } else {
+                alert('Invalid email or password. Please check your credentials and try again.');
+            }
+        });
+
+        // Handle signup form submission
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('signupName').value.trim();
+            const email = document.getElementById('signupEmail').value.trim().toLowerCase();
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            // Validation
+            if (!name || !email || !password || !confirmPassword) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            if (name.length < 2) {
+                alert('Name must be at least 2 characters long.');
+                return;
+            }
+
+            if (!isValidEmail(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long.');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            if (users.find(u => u.email.toLowerCase() === email)) {
+                alert('An account with this email already exists. Please use a different email or try logging in.');
+                return;
+            }
+            
+            // Create new user
+            const newUser = {
+                id: Date.now(),
+                name: name,
+                email: email,
+                password: password,
+                createdAt: new Date().toISOString(),
+                lastLogin: new Date().toISOString()
+            };
+            
+            users.push(newUser);
+            saveUsers();
+            
+            currentUser = newUser;
+            saveSession();
+            showMainSite();
+            
+            // Clear form
+            document.getElementById('signupForm').reset();
+            
+            // Show success message
+            setTimeout(() => {
+                alert(`Welcome to Self-Levelling, ${currentUser.name}! Your account has been created successfully.`);
+            }, 100);
+        });
+
+        // Email validation helper
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Show authentication page
+        function showAuthPage() {
+            document.getElementById('authPage').style.display = 'flex';
+            document.getElementById('mainSite').style.display = 'none';
+        }
+
+        // Show main site after successful authentication
+        function showMainSite() {
+            document.getElementById('authPage').style.display = 'none';
+            document.getElementById('mainSite').style.display = 'block';
+            document.getElementById('userName').textContent = currentUser.name;
+        }
+
+        // Logout function
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                currentUser = null;
+                clearSession();
+                showAuthPage();
+                
+                // Clear forms
+                document.getElementById('loginForm').reset();
+                document.getElementById('signupForm').reset();
+                
+                // Reset to login form
+                toggleForm('login');
+            }
+        }
+
+        // Show forgot password (placeholder)
+        function showForgotPassword() {
+            const email = prompt('Please enter your email address to reset your password:');
+            if (email) {
+                const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
+                if (user) {
+                    alert(`Password reset instructions would be sent to ${email}. (This is a demo - password reset functionality would be implemented on the backend)`);
+                } else {
+                    alert('No account found with that email address.');
+                }
+            }
+        }
+
+        // Debug function to show saved data (for development)
+        function debugStorage() {
+            console.log('Saved Users:', JSON.parse(localStorage.getItem('selfLevellingUsers') || '[]'));
+            console.log('Current Session:', JSON.parse(localStorage.getItem('selfLevellingSession') || 'null'));
+        }
+
+        // Initialize app when page loads
+        window.addEventListener('load', function() {
+            initializeApp();
+            
+            // Optional: Show debug info in console
+            console.log('Self-Levelling App Initialized');
+            console.log('Total registered users:', users.length);
+        });
+
+        // Handle page unload to ensure data is saved
+        window.addEventListener('beforeunload', function() {
+            if (currentUser) {
+                saveSession();
+            }
+        });
+    </script>
+</body>
+</html>

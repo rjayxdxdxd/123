@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Assessment | SelfLevelling</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    :root {
+      --primary: #ffc527;
+      --primary-dark: #e6b121;
+      --dark: #111111;
+      --darker: #000000;
+      --light: #f5f5f5;
+      --gray: #888888;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--dark);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      background-color: var(--darker);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 15px 0;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo h1 {
+      color: var(--white);
+      font-size: 24px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .arrow-icon {
+      color: var(--primary);
+      font-size: 24px;
+      margin-left: 10px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+    }
+
+    .main-menu {
+      display: flex;
+    }
+
+    .main-menu li {
+      position: relative;
+      margin: 0 15px;
+    }
+
+    .main-menu li a {
+      font-weight: 500;
+      padding: 10px 0;
+      color: var(--white);
+      position: relative;
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    .main-menu li a:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: var(--primary);
+      transition: width 0.3s;
+    }
+
+    .main-menu li a:hover:after {
+      width: 100%;
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 200px;
+      background-color: var(--darker);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.3s;
+      z-index: 100;
+      border-radius: 5px;
+      padding: 10px 0;
+    }
+
+    .main-menu li:hover .dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown li a {
+      display: block;
+      padding: 10px 20px;
+      font-size: 13px;
+    }
+
+    .dropdown li a:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .mobile-toggle {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--white);
+    }
+
+    @media (max-width: 768px) {
+      .main-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: var(--darker);
+        padding: 20px 0;
+      }
+
+      .main-menu.active {
+        display: flex;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+    }
+
+    /* Form styles */
+    .assessment-container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: var(--darker);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 197, 39, 0.6);
+    }
+
+    .assessment-container h2 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: none;
+      background: #333;
+      color: #fff;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      background-color: var(--primary);
+      color: #111;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .condition-detail {
+      display: none;
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #333;
+      border-left: 5px solid var(--primary);
+      display: none;
+      border-radius: 5px;
+    }
+
+    .result h3 {
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .exercise-card {
+      background-color: #444;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .exercise-card h4 {
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .warning {
+      background-color: #d32f2f;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    .bmi-card {
+      background: linear-gradient(135deg, #ffc527, #e6b121);
+      color: #111;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(255, 197, 39, 0.3);
+    }
+
+    .bmi-value {
+      font-size: 2.5em;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .bmi-category {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin: 10px 0;
+      padding: 8px 15px;
+      border-radius: 20px;
+      display: inline-block;
+    }
+
+    .underweight { background-color: #87CEEB; color: #000; }
+    .normal { background-color: #90EE90; color: #000; }
+    .overweight { background-color: #FFD700; color: #000; }
+    .obese { background-color: #FF6347; color: #fff; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <a href="REPORT.HTML">
+          <h1>Self-<span>Levelling</span></h1>
+        </a>
+        <div class="arrow-icon">
+          <i class="fas fa-chevron-right"></i>
+          <i class="fas fa-chevron-right"></i>
+          <i class="fas fa-chevron-right"></i>
+          <i class="fas fa-chevron-right"></i>
+        </div>
+      </div>
+      <div class="mobile-toggle" id="mobileToggle">
+        <i class="fas fa-bars"></i>
+      </div>
+      <nav>
+        <ul class="main-menu" id="mainMenu">
+          <li><a href="REPORT.HTML">Profile</a></li>
+          <li><a href="About.HTML">About</a></li>
+          <li>
+            <a href="Fitness Tools.html">Fitness tools</a>
+            <ul class="dropdown">
+              <li><a href="calorie.html">Calorie Calculator</a></li>
+              <li><a href="workout.html">Workout Plans</a></li>
+              <li><a href="nutrition.html">Nutrition & Diet</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="support.html">Support</a>
+            <ul class="dropdown">
+              <li><a href="faqs.html">FAQs</a></li>
+              <li><a href="privacyandpolicy.html">Privacy Policy</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="assessment.html">Assessment</a>
+            <ul class="dropdown">
+              <li><a href="profile.html">Profile</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="assessment-container">
+    <h2>Health & Fitness Assessment</h2>
+    <form id="assessmentForm">
+      <label>Name:</label>
+      <input type="text" id="name" required />
+
+      <label>Age:</label>
+      <input type="number" id="age" required />
+
+      <label>Gender:</label>
+      <select id="gender" required>
+        <option value="">Select Gender</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+
+      <label>Weight (kg):</label>
+      <input type="number" id="weight" required />
+
+      <label>Height (cm):</label>
+      <input type="number" id="height" required />
+
+      <label>Do you have any medical condition?</label>
+      <select id="condition" required>
+        <option value="">Select</option>
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </select>
+
+      <div id="conditionDetail" class="condition-detail">
+        <label>What type of medical condition do you have?</label>
+        <select id="conditionType">
+          <option value="">Select Condition</option>
+          <option value="diabetes">Diabetes</option>
+          <option value="hypertension">High Blood Pressure (Hypertension)</option>
+          <option value="heart">Heart Disease</option>
+          <option value="arthritis">Arthritis</option>
+          <option value="asthma">Asthma</option>
+          <option value="back">Back Pain/Spine Issues</option>
+          <option value="knee">Knee Problems</option>
+          <option value="obesity">Obesity</option>
+          <option value="osteoporosis">Osteoporosis</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <button type="submit">Get Exercise Recommendations</button>
+    </form>
+
+    <div class="result" id="result"></div>
+  </div>
+
+<script>
+  // Show/hide condition detail based on selection
+  document.getElementById('condition').addEventListener('change', function() {
+    const conditionDetail = document.getElementById('conditionDetail');
+    if (this.value === 'yes') {
+      conditionDetail.style.display = 'block';
+      document.getElementById('conditionType').required = true;
+    } else {
+      conditionDetail.style.display = 'none';
+      document.getElementById('conditionType').required = false;
+    }
+  });
+
+  // Exercise recommendations based on medical conditions
+  const exerciseRecommendations = {
+    diabetes: {
+      title: "Exercise Recommendations for Diabetes",
+      exercises: [
+        {
+          name: "Walking",
+          description: "Start with 10-15 minutes daily, gradually increase to 30 minutes. Helps control blood sugar levels.",
+          frequency: "Daily"
+        },
+        {
+          name: "Swimming",
+          description: "Low-impact cardiovascular exercise that's gentle on joints and helps improve insulin sensitivity.",
+          frequency: "3-4 times per week"
+        },
+        {
+          name: "Light Resistance Training",
+          description: "Use light weights or resistance bands to build muscle and improve glucose metabolism.",
+          frequency: "2-3 times per week"
+        }
+      ]
+    },
+    hypertension: {
+      title: "Exercise Recommendations for High Blood Pressure",
+      exercises: [
+        {
+          name: "Moderate Walking",
+          description: "Gentle walking for 30 minutes helps lower blood pressure naturally.",
+          frequency: "Daily"
+        },
+        {
+          name: "Cycling",
+          description: "Low to moderate intensity cycling on flat terrain or stationary bike.",
+          frequency: "3-4 times per week"
+        },
+        {
+          name: "Yoga",
+          description: "Gentle yoga poses and breathing exercises help reduce stress and blood pressure.",
+          frequency: "3-4 times per week"
+        }
+      ]
+    },
+    heart: {
+      title: "Exercise Recommendations for Heart Disease",
+      exercises: [
+        {
+          name: "Supervised Walking",
+          description: "Start slowly with 5-10 minutes, increase gradually under medical supervision.",
+          frequency: "As advised by doctor"
+        },
+        {
+          name: "Tai Chi",
+          description: "Gentle, flowing movements that improve cardiovascular health without strain.",
+          frequency: "2-3 times per week"
+        },
+        {
+          name: "Water Aerobics",
+          description: "Low-impact exercise in water reduces strain on the heart while providing cardiovascular benefits.",
+          frequency: "2-3 times per week"
+        }
+      ]
+    },
+    arthritis: {
+      title: "Exercise Recommendations for Arthritis",
+      exercises: [
+        {
+          name: "Water Exercises",
+          description: "Swimming or water aerobics reduce joint stress while maintaining mobility.",
+          frequency: "3-4 times per week"
+        },
+        {
+          name: "Range of Motion Exercises",
+          description: "Gentle stretching and joint movement exercises to maintain flexibility.",
+          frequency: "Daily"
+        },
+        {
+          name: "Chair Exercises",
+          description: "Seated exercises that strengthen muscles without putting stress on joints.",
+          frequency: "Daily"
+        }
+      ]
+    },
+    asthma: {
+      title: "Exercise Recommendations for Asthma",
+      exercises: [
+        {
+          name: "Walking",
+          description: "Gentle walking with proper warm-up and cool-down. Keep inhaler nearby.",
+          frequency: "Daily"
+        },
+        {
+          name: "Swimming",
+          description: "Excellent for building lung capacity in a humid environment.",
+          frequency: "2-3 times per week"
+        },
+        {
+          name: "Yoga",
+          description: "Focus on breathing techniques and gentle poses to improve respiratory function.",
+          frequency: "3-4 times per week"
+        }
+      ]
+    },
+    back: {
+      title: "Exercise Recommendations for Back Pain",
+      exercises: [
+        {
+          name: "Gentle Stretching",
+          description: "Cat-cow stretches, knee-to-chest stretches to improve spinal flexibility.",
+          frequency: "Daily"
+        },
+        {
+          name: "Core Strengthening",
+          description: "Planks, modified crunches, and pelvic tilts to support the spine.",
+          frequency: "3-4 times per week"
+        },
+        {
+          name: "Walking",
+          description: "Low-impact exercise that strengthens back muscles and improves posture.",
+          frequency: "Daily"
+        }
+      ]
+    },
+    knee: {
+      title: "Exercise Recommendations for Knee Problems",
+      exercises: [
+        {
+          name: "Seated Leg Extensions",
+          description: "Strengthen quadriceps muscles while seated to reduce knee strain.",
+          frequency: "Daily"
+        },
+        {
+          name: "Swimming",
+          description: "Low-impact exercise that doesn't stress knee joints.",
+          frequency: "3-4 times per week"
+        },
+        {
+          name: "Stationary Cycling",
+          description: "Low resistance cycling to maintain knee mobility without impact.",
+          frequency: "3-4 times per week"
+        }
+      ]
+    },
+    obesity: {
+      title: "Exercise Recommendations for Obesity",
+      exercises: [
+        {
+          name: "Walking",
+          description: "Start with 10 minutes daily, gradually increase duration and pace.",
+          frequency: "Daily"
+        },
+        {
+          name: "Chair Exercises",
+          description: "Seated exercises for building strength and endurance safely.",
+          frequency: "Daily"
+        },
+        {
+          name: "Water Aerobics",
+          description: "Low-impact, full-body workout that's gentle on joints.",
+          frequency: "3-4 times per week"
+        }
+      ]
+    },
+    osteoporosis: {
+      title: "Exercise Recommendations for Osteoporosis",
+      exercises: [
+        {
+          name: "Weight-bearing Walking",
+          description: "Regular walking helps maintain bone density and balance.",
+          frequency: "Daily"
+        },
+        {
+          name: "Light Resistance Training",
+          description: "Use light weights to strengthen bones and muscles safely.",
+          frequency: "2-3 times per week"
+        },
+        {
+          name: "Balance Exercises",
+          description: "Tai chi or simple balance exercises to prevent falls.",
+          frequency: "Daily"
+        }
+      ]
+    },
+    no: {
+      title: "General Exercise Recommendations",
+      exercises: [
+        {
+          name: "Cardiovascular Exercise",
+          description: "Running, cycling, swimming for 150 minutes per week of moderate intensity.",
+          frequency: "5 times per week"
+        },
+        {
+          name: "Strength Training",
+          description: "Full-body resistance training to build and maintain muscle mass.",
+          frequency: "2-3 times per week"
+        },
+        {
+          name: "Flexibility Training",
+          description: "Stretching, yoga, or Pilates to maintain mobility and prevent injury.",
+          frequency: "Daily"
+        }
+      ]
+    }
+  };
+
+  // BMI calculation function
+  function calculateBMI(weight, height) {
+    const heightInMeters = height / 100;
+    return (weight / (heightInMeters * heightInMeters)).toFixed(1);
+  }
+
+  // BMI category function
+  function getBMICategory(bmi) {
+    if (bmi < 18.5) return { category: 'Underweight', class: 'underweight' };
+    if (bmi < 25) return { category: 'Normal Weight', class: 'normal' };
+    if (bmi < 30) return { category: 'Overweight', class: 'overweight' };
+    return { category: 'Obese', class: 'obese' };
+  }
+
+  // BMI-based exercise modifications
+  function getBMIExerciseModifications(bmi, baseRecommendations) {
+    const modifications = {...baseRecommendations};
+    
+    if (bmi < 18.5) {
+      // Underweight - focus on strength building
+      modifications.exercises = modifications.exercises.map(exercise => {
+        if (exercise.name.includes('Walking') || exercise.name.includes('Cardio')) {
+          return {
+            ...exercise,
+            description: exercise.description + " Focus on moderate intensity to build stamina while supporting weight gain goals.",
+            frequency: exercise.frequency
+          };
+        }
+        return exercise;
+      });
+      
+      modifications.exercises.push({
+        name: "Strength Building (Underweight Focus)",
+        description: "Light resistance training and bodyweight exercises to build muscle mass. Include protein-rich snacks after workouts.",
+        frequency: "3-4 times per week"
+      });
+    } else if (bmi >= 30) {
+      // Obese - focus on low-impact, gradual progression
+      modifications.exercises = modifications.exercises.map(exercise => {
+        return {
+          ...exercise,
+          description: exercise.description + " Start with shorter durations and focus on consistency over intensity.",
+          frequency: exercise.frequency
+        };
+      });
+      
+      modifications.exercises.unshift({
+        name: "Chair-Based Exercises (High BMI Adaptation)",
+        description: "Seated exercises to build strength and endurance safely. Perfect starting point for higher BMI individuals.",
+        frequency: "Daily, 10-15 minutes"
+      });
+    } else if (bmi >= 25) {
+      // Overweight - balanced approach with emphasis on cardio
+      modifications.exercises.push({
+        name: "Extended Cardio Sessions",
+        description: "Gradually increase cardio duration to support healthy weight management. Monitor heart rate.",
+        frequency: "4-5 times per week"
+      });
+    }
+    
+    return modifications;
+  }
+
+  document.getElementById('assessmentForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('name').value;
+    const weight = parseFloat(document.getElementById('weight').value);
+    const height = parseFloat(document.getElementById('height').value);
+    const condition = document.getElementById('condition').value;
+    const conditionType = document.getElementById('conditionType').value;
+    const resultDiv = document.getElementById('result');
+
+    if (condition === 'yes' && !conditionType) {
+      alert('Please select your medical condition type.');
+      return;
+    }
+
+    // Calculate BMI
+    const bmi = calculateBMI(weight, height);
+    const bmiInfo = getBMICategory(parseFloat(bmi));
+
+    const recommendationKey = condition === 'yes' ? conditionType : 'no';
+    let recommendations = exerciseRecommendations[recommendationKey];
+
+    // Modify recommendations based on BMI
+    recommendations = getBMIExerciseModifications(parseFloat(bmi), recommendations);
+
+    if (recommendations) {
+      let resultHTML = `<h3>Hello ${name}!</h3>`;
+      
+      // BMI Display
+      resultHTML += `
+        <div class="bmi-card">
+          <h3>Your BMI Analysis</h3>
+          <div class="bmi-value">${bmi}</div>
+          <div class="bmi-category ${bmiInfo.class}">${bmiInfo.category}</div>
+          <p style="margin-top: 15px; font-size: 0.9em;">BMI = Weight(kg) ÷ Height²(m)</p>
+        </div>
+      `;
+      
+      if (condition === 'yes') {
+        resultHTML += `<div class="warning">
+          <strong>Important:</strong> Please consult with your healthcare provider before starting any exercise program, especially with your medical condition and current BMI status.
+        </div>`;
+      } else if (parseFloat(bmi) < 18.5 || parseFloat(bmi) >= 30) {
+        resultHTML += `<div class="warning">
+          <strong>Note:</strong> Your BMI indicates you should consult with a healthcare provider for personalized fitness and nutrition guidance.
+        </div>`;
+      }
+      
+      resultHTML += `<h3>${recommendations.title}</h3>`;
+      
+      recommendations.exercises.forEach(exercise => {
+        resultHTML += `
+          <div class="exercise-card">
+            <h4>${exercise.name}</h4>
+            <p><strong>Description:</strong> ${exercise.description}</p>
+            <p><strong>Frequency:</strong> ${exercise.frequency}</p>
+          </div>
+        `;
+      });
+
+      if (condition === 'yes') {
+        resultHTML += `
+          <div style="margin-top: 20px; padding: 15px; background-color: #1a5490; border-radius: 5px;">
+            <strong>General Guidelines (Tailored for BMI ${bmi}):</strong>
+            <ul style="margin-top: 10px; padding-left: 20px;">
+              <li>Start slowly and gradually increase intensity</li>
+              <li>Stop exercising if you feel unwell</li>
+              <li>Stay hydrated and monitor your condition</li>
+              <li>Consider working with a qualified fitness professional</li>
+              ${parseFloat(bmi) >= 30 ? '<li>Focus on low-impact exercises to protect joints</li>' : ''}
+              ${parseFloat(bmi) < 18.5 ? '<li>Combine exercise with proper nutrition to support healthy weight gain</li>' : ''}
+              ${parseFloat(bmi) >= 25 ? '<li>Monitor progress with both weight and body measurements</li>' : ''}
+            </ul>
+          </div>
+        `;
+      } else {
+        resultHTML += `
+          <div style="margin-top: 20px; padding: 15px; background-color: #1a5490; border-radius: 5px;">
+            <strong>BMI-Based Exercise Guidelines:</strong>
+            <ul style="margin-top: 10px; padding-left: 20px;">
+              ${parseFloat(bmi) < 18.5 ? 
+                '<li>Focus on strength training to build healthy muscle mass</li><li>Ensure adequate nutrition to support exercise and weight gain</li>' : 
+                parseFloat(bmi) >= 30 ? 
+                '<li>Prioritize low-impact exercises to protect joints</li><li>Start with short sessions and gradually increase duration</li><li>Consider water-based exercises for joint-friendly cardio</li>' :
+                parseFloat(bmi) >= 25 ?
+                '<li>Combine cardio and strength training for optimal results</li><li>Focus on creating a sustainable caloric deficit</li>' :
+                '<li>Maintain current weight with balanced exercise routine</li><li>Focus on overall fitness and strength</li>'
+              }
+              <li>Track your progress regularly</li>
+              <li>Stay consistent with your exercise routine</li>
+            </ul>
+          </div>
+        `;
+      }
+
+      resultDiv.innerHTML = resultHTML;
+      resultDiv.style.display = 'block';
+    }
+  });
+
+  // Mobile menu toggle
+  document.getElementById('mobileToggle').addEventListener('click', function() {
+    const mainMenu = document.getElementById('mainMenu');
+    mainMenu.classList.toggle('active');
+  });
+</script>
+
+</body>
+</html>
